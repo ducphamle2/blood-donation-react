@@ -1,6 +1,5 @@
 import React, { Component, useEffect, useState } from "react";
 import { Provider, connect } from "react-redux";
-import api from "../../../shared/Api";
 import axios from "axios";
 //import loginAction from "../../redux/actions/loginAction";
 import {
@@ -13,59 +12,11 @@ import {
   NavLink,
   Redirect
 } from "react-router-dom";
-import { Layout, Button, TextField, FormLayout, Form, ChoiceList, AppProvider, Toast, Frame } from '@shopify/polaris';
 
 import { Login } from '../../authentication';
 import { Home } from '../';
 import LoginAction from "../../authentication/LoginAction";
 import StringUtils from "../../../utils/StringUtils";
-
-// You can think of these components as "pages"
-// in your app.
-
-function About() {
-  return (
-    <div>
-      <h2>About</h2>
-    </div>
-  );
-}
-
-function Dashboard() {
-
-  // match variable is added as props for this component when it is called by Route (above)
-  let match = useRouteMatch();
-
-  console.log("match: ", match);
-
-  return (
-    <div>
-      <h2>Dashboard</h2>
-
-      <ul>
-        <li>
-          <Link to={`${match.url}/components`}>Components</Link>
-        </li>
-        <li>
-          <Link to={`${match.url}/props-v-state`}>Props v: state</Link>
-        </li>
-      </ul>
-      <Switch>
-        <Route path={`${match.path}/:itemId`}>
-          <Item />
-        </Route>
-        <Route path={match.path}>
-          <h3>Please select an item. {match.path}</h3>
-        </Route>
-      </Switch>
-    </div>
-  );
-}
-
-function Item() {
-  let { itemId } = useParams();
-  return <h2>Requested item: {itemId}</h2>
-}
 
 function App(props) {
 
@@ -117,47 +68,6 @@ function App(props) {
       }
     );
 
-    // //GET USER INFO FROM SERVER TO CHECK IF AUTH TOKEN IS VALID
-    // api.getUserInfo((isSuccess, response, error) => {
-    //     console.log("app.js | getUserInfo | isSuccess: " + isSuccess);
-    //     if (isSuccess) {
-    //         //GOOD TOKEN
-    //         console.log("GetUserData success", response);
-    //         let payload = {
-    //             name: response.data.data.name,
-    //             email: response.data.data.email,
-    //             userId: response.data.data.userId,
-    //             userType: response.data.data.role
-    //         };
-
-
-    //         //HANDLE DATA FOR DONOR
-    //         if (response.data.data.address) payload.address = response.data.data.address;
-    //         if (response.data.data.dob) payload.dob = response.data.data.dob;
-    //         if (response.data.data.blood_type) payload.blood_type = response.data.data.blood_type;
-
-    //         //ADDITIONAL DATA
-    //         if (payload.userType === "donor") {
-    //             payload.donation_requirement_data = {};
-    //             payload.donation_requirement_data.height = response.data.data.height;
-    //             payload.donation_requirement_data.weight = response.data.data.weight;
-    //             payload.donation_requirement_data.gender = response.data.data.gender;
-    //             payload.donation_requirement_data.tattoo_last_12_month = response.data.data.tattoo_last_12_month;
-    //             payload.donation_requirement_data.cholesterol = response.data.data.cholesterol;
-    //             payload.donation_requirement_data.positive_test_HIV = response.data.data.positive_test_HIV;
-    //             payload.donation_requirement_data.infectious_disease = response.data.data.infectious_disease;
-    //             payload.donation_requirement_data.cancer = response.data.data.cancer;
-    //         }
-
-    //         //SET DATA
-    //         store.dispatch(loginAction.logIn(payload));
-    //     } else {
-    //         Router.push("/").then(() => {
-    //             //BAD TOKEN, ROUTE BACK TO SIGN IN PAGE
-    //             console.log("Route successfully from 'any' to '/' due to authentication failed");
-    //         });
-    //     }
-    // })
   }, []);
 
   useEffect(() => {
