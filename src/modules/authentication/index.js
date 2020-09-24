@@ -1,2 +1,1 @@
-export { default as Login } from './components/login';
-export { default as Register } from './components/register';
+export { default as Authentication } from './components/Authentication';

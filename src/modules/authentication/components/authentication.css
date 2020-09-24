@@ -1,0 +1,73 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  margin-top: 150px;
+  width: 400px;
+  padding: 24px;
+  height: 800px;
+}
+
+.container {
+  width: 100%;
+  background: #fff;
+  display: flex;
+}
+
+.sign-up {
+  margin: auto;
+  margin-top: 10px;
+}
+
+.login-image {
+  object-fit: cover;
+  width: calc(100vw - 400px);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+  background-image: url("../images/blood-drop-2.jpg");
+}
+
+.login-title {
+  font-family: Core Sans CR 45 Regular;
+  font-size: 27px;
+  padding-bottom: 40px;
+  align-self: center;
+}
+
+.error-style {
+  color: #DB1E4A;
+  font-size: 12.5px;
+  margin: auto;
+}
+
+.login-form a:hover {
+  color: #DE3618;
+  cursor: pointer;
+}
+
+.Polaris-Navigation__Logo {
+  height: 124px;
+  object-fit: contain;
+  margin-left: 40px;
+}
+
+.inner {
+  display: table;
+  margin: 0 auto;
+}
+
+.outer {
+  width:100%
+}
+
+@media (max-width: 48.0625em) and (min-width: 46.5em), (min-width: 61.5em) {
+  [data-has-navigation] .Polaris-EmptyState--withinPage .Polaris-EmptyState__Image {
+    margin-top: 0;
+    margin-left: 0;
+    width: 170%;
+  }
+}

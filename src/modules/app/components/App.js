@@ -13,7 +13,7 @@ import {
   Redirect
 } from "react-router-dom";
 
-import { Login } from '../../authentication';
+import { Authentication } from '../../authentication';
 import { Home } from '../';
 import LoginAction from "../../authentication/LoginAction";
 import StringUtils from "../../../utils/StringUtils";
@@ -77,13 +77,13 @@ function App(props) {
   return (
     <Router>
       <Switch>
-        <Route path="/login" component={Login}>
-          <Login />
+        <Route path="/authentication" component={Authentication}>
+          <Authentication />
         </Route>
         <Route path="/home" component={Home}>
           <Home />
         </Route>
-        {!StringUtils.isEmpty(props.token) ? null : <Redirect from="*" to="/login" />}
+        {!StringUtils.isEmpty(props.token) ? null : <Redirect from="*" to="/authentication" />}
       </Switch>
     </Router>
   );
