@@ -1,22 +1,16 @@
-import React, { Component, useEffect, useState } from "react";
-import { Provider, connect } from "react-redux";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import axios from "axios";
-//import loginAction from "../../redux/actions/loginAction";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
-  useRouteMatch,
-  useParams,
-  NavLink,
   Redirect
 } from "react-router-dom";
 
-import { Authentication } from '../../authentication';
-import { Home } from '../';
-import LoginAction from "../../authentication/LoginAction";
-import StringUtils from "../../../utils/StringUtils";
+import { Authentication, LoginAction } from '../../authentication';
+import { EventManagement } from '../../organizer';
+import { StringUtils } from "../../../utils";
 
 function App(props) {
 
@@ -80,8 +74,8 @@ function App(props) {
         <Route path="/authentication" component={Authentication}>
           <Authentication />
         </Route>
-        <Route path="/home" component={Home}>
-          <Home />
+        <Route path="/organizer/manage_event" component={EventManagement}>
+          <EventManagement />
         </Route>
         {!StringUtils.isEmpty(props.token) ? null : <Redirect from="*" to="/authentication" />}
       </Switch>

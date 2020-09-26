@@ -7,8 +7,8 @@ import {
   SettingsMinor
 } from '@shopify/polaris-icons';
 import store from "../redux/Store";
-import loginAction from '../../modules/authentication/LoginAction';
-import stringUtils from '../../utils/StringUtils'
+import { LoginAction } from '../../modules/authentication';
+import { StringUtils } from "../../utils";
 import { useHistory } from "react-router-dom";
 
 export default function PageLayout(props) {
@@ -39,10 +39,10 @@ export default function PageLayout(props) {
 
   const signOut = useCallback(
     () => {
-      store.dispatch(loginAction.logOut());
+      store.dispatch(LoginAction.logOut());
       localStorage.setItem("token", "");
       history.push("/");
-    }
+    }, []
   );
 
   const userMenuActions = [
@@ -66,7 +66,7 @@ export default function PageLayout(props) {
     <TopBar.UserMenu
       actions={userMenuActions}
       name={props.userName}
-      detail={stringUtils.roleToString(props.userType)}
+      detail={StringUtils.roleToString(props.userType)}
       initials={props.userName[0]}
       open={userMenuActive}
       onToggle={toggleUserMenuActive}
@@ -94,7 +94,7 @@ export default function PageLayout(props) {
   const modalRouteMarkup = (
     props.expectedUserType ?
       <Modal
-        open={props.expectedUserType !== props.userType && props.userName}
+        open={props.expectedUserType !== props.userType}
         title="Oops! What are you looking for?"
         primaryAction={{
           content: "Sign in with Different Account",

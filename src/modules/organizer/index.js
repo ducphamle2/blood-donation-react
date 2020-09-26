@@ -1,0 +1,1 @@
+export { default as EventManagement } from './components/EventManagement';

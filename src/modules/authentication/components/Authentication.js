@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useCallback } from "react";
-import AuthenticationRouteUtils from '../../../utils/AuthenRouteUtils';
-import StringUtils from '../../../utils/StringUtils';
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Api from '../../../shared/Api';
-import LoginAction from '../LoginAction';
-import { Layout, Button, TextField, FormLayout, Form, ChoiceList, AppProvider, Toast, Frame } from '@shopify/polaris';
-import './authentication.css'
+import { Api } from '../../../shared';
+import { LoginAction } from '../';
+import { Button, TextField, ChoiceList, AppProvider, Toast, Frame } from '@shopify/polaris';
+import './authentication.css';
+import { StringUtils, AuthenRouteUtils } from "../../../utils";
 
 export default function Login(props) {
 
@@ -57,7 +56,7 @@ export default function Login(props) {
     }
   }
 
-  const onHandleLogin = useCallback((isSuccess, response, error) => {
+  const onHandleLogin = (isSuccess, response, error) => {
     if (isSuccess) {
       console.log("response data: ", response);
       let user = response.data.returnedUser;
@@ -88,7 +87,7 @@ export default function Login(props) {
 
       localStorage.setItem("token", response.data.token);
       props.dispatch(LoginAction.logIn(payload));
-      let route = AuthenticationRouteUtils.stringRouteByRole(userType);
+      let route = AuthenRouteUtils.stringRouteByRole(userType);
 
       console.log("prepare to route from /login to " + route);
       history.push(route);
@@ -107,7 +106,7 @@ export default function Login(props) {
           setLoginErrorMessage(error.response.data.error || error.response.data.message);
       }
     }
-  }, [])
+  }
 
   const handleRegister = async () => {
     // EVALUATE THE INPUTS
@@ -138,7 +137,7 @@ export default function Login(props) {
     }
   }
 
-  const onHandleRegister = useCallback((isSuccess, response, error) => {
+  const onHandleRegister = (isSuccess, response, error) => {
     if (isSuccess) setToastMessage("Register successfully");
     else {
       try {
@@ -147,7 +146,7 @@ export default function Login(props) {
         setLoginErrorMessage("Unexpected Error, check your internet connection")
       }
     }
-  }, [])
+  }
 
   const routeHelloWorld = () => {
     setIsLoginPage(false);
@@ -161,14 +160,8 @@ export default function Login(props) {
 
   const toggleActiveToast = () => setActiveToast(!activeToast);
 
-
-  const showToastWithMessage = (message) => {
-    setToastMessage(message);
-    setActiveToast(true)
-  };
-
   const ToastSuccessUpdateProfile = activeToast ? (
-    <Toast content={toastMessage} onDismiss={this.toggleActiveToast} />
+    <Toast content={toastMessage} onDismiss={toggleActiveToast} />
   ) : null;
 
   const theme = {

@@ -5,6 +5,7 @@ import { App } from './modules/app';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import store from './shared/redux/Store';
+import '@shopify/polaris/dist/styles.css';
 
 ReactDOM.render(
   <Provider store={store}>
